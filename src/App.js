@@ -62,7 +62,7 @@ async function Balance (){
     }
   } else {
   console.log( "Please install MetaMask")
-  // doing it again
+  
   console.log("helllo");
   }
 }
