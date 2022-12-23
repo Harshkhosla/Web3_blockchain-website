@@ -18,7 +18,7 @@ function App() {
     }
   }
    async function Fund(){
-    const ethAmount ="77"
+    const ethAmount ="0.000000000000000000000000001"
     if(typeof window.ethereum!=="undefined"){
       console.log(ethers);
       const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -51,10 +51,24 @@ function App() {
         }
     })
 }
+async function Balance (){
+  if (typeof window.ethereum !== "undefined") {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    try {
+      const balance = await provider.getBalance(contractAddress)
+      console.log(ethers.utils.formatEther(balance))
+    } catch (error) {
+      console.log(error)
+    }
+  } else {
+  console.log( "Please install MetaMask")
+  }
+}
   return (
     <div className="App">
       <button type="button" class="btn btn-primary" onClick={ConnectingTometamask}>{connection?"connected":"Connect"}</button>
       <button type="button" class="btn btn-primary" onClick={Fund}>Fund</button>
+      <button type="button" class="btn btn-primary" onClick={Balance}>Balance</button>
     </div>
   );
 }
